@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>预定信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by freehtml5.co"/>
+    <meta name="keywords"
+          content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"/>
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        window.onload = function () {
+            $("#moreTrainee").hide();
+        }
+    </script>
+</head>
+<body>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <p class="num">Call: +01 123 456 7890</p>
+                        <ul class="fh5co-social">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div id="fh5co-logo"><a href="index.html">Learn<span>.</span></a></div>
+                    </div>
+                    <div class="col-xs-11 text-right menu-1">
+                        <ul>
+                            <li><a href="/index">首页</a></li>
+                            <li class="active"><a href="/courses">订阅课程</a></li>
+                            <li><a href="/info">个人信息</a></li>
+                            <li class="has-dropdown">
+                                <a href="/getOrderList">我订阅的</a>
+                                <ul class="dropdown">
+                                    <li><a href="/getOrderList?state=未开始">未开始</a></li>
+                                    <li><a href="/getOrderList?state=进行中">进行中</a></li>
+                                    <li><a href="/getOrderList?state=已完成">已完成</a></li>
+                                    <li><a href="/getOrderList?state=已退订">已退订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/contact">联系我们</a></li>
+
+                            <li class="btn-cta"><a href="/logout"><span>注销</span></a></li>
+                            <li class="btn-cta"><a href="#"><span>申请机构</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"
+            style="" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>预定信息</h1>
+                            <h2>您可以为您和您的朋友预定这门课程。</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fh5co-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-push-1 animate-box">
+
+                    <div class="fh5co-contact-info">
+                        <h3>订单信息</h3>
+                        <form id="orderform">
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="userEmail">账号：</label>
+                                    <input type="text" id="userEmail" class="form-control"
+                                           th:value="${session.loginuser}"
+                                           readonly>
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="courseName">课程：</label>
+                                    <input type="text" id="courseName" class="form-control" th:value="${course.name}"
+                                           readonly>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="teacher">教师：</label>
+                                    <input type="text" id="teacher" class="form-control" th:value="${course.teacher}"
+                                           readonly>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="time">时间：</label>
+                                    <input type="text" id="time" class="form-control"
+                                           th:value="${course.startTime}+' - '+${course.endTime}"
+                                           readonly>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label>是否选择班级：</label><br>
+                                    <input type="radio" id="chooseClass_yes" name="chooseClass" value="true"
+                                           onclick="showClass()" checked>
+                                    <label for="chooseClass_yes">是（每单限3学员）</label>
+                                    <input type="radio" id="chooseClass_no" name="chooseClass" value="false"
+                                           onclick="hideClass()">
+                                    <label for="chooseClass_no">否（每单限9学员）</label>
+                                </div>
+                            </div>
+                            <div class="row form-group" id="className">
+                                <div class="col-md-12">
+                                    <label>班级：</label>
+                                    <select id="classNum" name="classNum" form="orderform">
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-4">
+                                    <label>其他学员（可不填）：</label>
+                                    <input name="otherTrainee" type="text" class="form-control"
+                                           onblur="checkTrainee(this)">
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="color:white;">学员2：</label>
+                                    <input name="otherTrainee" type="text" class="form-control"
+                                           onblur="checkTrainee(this)">
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="color:white;">学员3：</label>
+                                    <input name="otherTrainee" type="text" class="form-control"
+                                           onblur="checkTrainee(this)">
+                                </div>
+                            </div>
+                            <div id="moreTrainee">
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="otherTrainee" type="text" class="form-control"
+                                               onblur="checkTrainee(this)">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" style="text-align: center;float: right;">
+                                <br><label id="totalPrice" th:text="${initPrice}"></label><label>元</label><br>
+                                <input type="button" value="提交订单" class="btn btn-primary" onclick="commitOrder()">
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row copyright">
+        <div class="col-md-12 text-center">
+            <p>
+                <small class="block">&copy; 2018 PeiPei Company. All Rights Reserved. By - DieDie</small>
+            </p>
+        </div>
+    </div>
+
+</div>
+</footer>
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+<script th:inline="javascript">
+    setInterval(function(){//每隔100毫秒检查一次。
+        var flag = getCookie('need_refresh');//getCookie跟setCookie一样，都百度一下。
+        if(flag === 'yes'){
+            //检查到yes说明b.html页面让我刷新了。
+            generateOrder();//执行你刷新的方法。
+            delCookie('need_refresh');//删除cookie避免重复执行。
+        }
+    }, 100);
+
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+    function delCookie(name)
+    {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getCookie(name);
+        if(cval!=null)
+            document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    }
+    function showClass() {
+        $("#className").show();
+        $("#moreTrainee").hide();
+    }
+
+    function hideClass() {
+        $("#className").hide();
+        $("#moreTrainee").show();
+    }
+
+    function commitOrder() {
+
+
+        var chooseClass = $('input:radio[name="chooseClass"]:checked').val();
+        var classNum = $("#classNum").val();
+        var otherTrainees = document.getElementsByName("otherTrainee");
+        var tempOrder = [[${order}]];
+
+        tempOrder.traineeID = [[${session.loginuser}]];
+
+        if (chooseClass == "true") {
+            tempOrder.chooseClass = true;
+            tempOrder.classNum = classNum;
+        } else {
+            tempOrder.chooseClass = false;
+        }
+        for (var i = 0; i < otherTrainees.length; i++) {
+            if (otherTrainees[i].value != null) {
+                if (otherTrainees[i].value == "该用户不存在") {
+                    alert("存在非法用户，请检查!");
+                    return;
+                }
+                tempOrder.otherTrainee[i] = otherTrainees[i].value;
+            }
+        }
+        tempOrder.courseID = [[${course.courseID}]];
+        tempOrder.price = parseFloat(document.getElementById("totalPrice").innerText);
+        var strOrder = JSON.stringify(tempOrder);
+        console.log(strOrder)
+        console.log(tempOrder);
+        $.ajax({
+            type: 'post',
+            url: '/commitOrder',
+            dataType : 'json',
+            data: {order: strOrder},
+            success: function (data) {
+                var i=window.confirm("是否前往支付？");
+                if(i!=0) {
+                    window.open("/pay?price="+tempOrder.price);
+                }
+            }
+        });
+    }
+
+    function checkTrainee(obj) {
+        if (obj.value != "" && obj.value != null) {
+            var email = obj.value;
+            $.ajax({
+                type: 'post',
+                url: '/checkOtherTrainee',
+                data: {email: email},
+                success: function (data, status) {
+                    if (!data) {
+                        obj.value = "该用户不存在";
+                    }else {
+                        var totalPrice = parseFloat(document.getElementById("totalPrice").innerText);
+                        console.log(totalPrice);
+                        totalPrice+=[[${initPrice}]];
+                        document.getElementById("totalPrice").innerText= String(totalPrice);
+                        console.log(totalPrice)
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
+    }
+    function generateOrder() {
+        window.location.href="/generateOrder";
+    }
+</script>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+<script src="js/google_map.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+

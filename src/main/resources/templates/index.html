@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>世界第一的培训机构</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <p class="num">Call: +01 123 456 7890</p>
+                        <ul class="fh5co-social">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div id="fh5co-logo"><a href="hello">Learn<span>.</span></a></div>
+                    </div>
+                    <div class="col-xs-11 text-right menu-1">
+                        <ul>
+                            <li class="active"><a href="/index">首页</a></li>
+                            <li><a href="/courses">订阅课程</a></li>
+                            <li><a href="/info">个人信息</a></li>
+                            <li class="has-dropdown">
+                                <a href="/getOrderList">我订阅的</a>
+                                <ul class="dropdown">
+                                    <li><a href="/getOrderList?state=未开始">未开始</a></li>
+                                    <li><a href="/getOrderList?state=进行中">进行中</a></li>
+                                    <li><a href="/getOrderList?state=已完成">已完成</a></li>
+                                    <li><a href="/getOrderList?state=已退订">已退订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/contact">联系我们</a></li>
+
+                            <li class="btn-cta"><a href="/logout"><span>注销</span></a></li>
+                            <li class="btn-cta"><a href="/applyInstitution"><span>申请机构</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <header id="fh5co-header" class="fh5co-cover" role="banner"
+            style=""
+            data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>学习的艺术</h1>
+                            <h2><a href="" target="_blank" th:text="${session.loginname}"></a>
+                                欢迎您来到 <a href="" target="_blank">呸呸培训</a>
+                            </h2>
+                            <p><a class="btn btn-primary btn-lg btn-learn" href="/courses">订阅课程</a> <a
+                                    class="btn btn-primary btn-lg popup-vimeo btn-video"
+                                    href="/getOrderList">
+                                我订阅的</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--<div id="fh5co-counter" class="fh5co-counters">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-3 text-center animate-box">-->
+                    <!--<span class="fh5co-counter js-counter" data-from="0" data-to="40356" data-speed="5000"-->
+                          <!--data-refresh-interval="50"></span>-->
+                    <!--<span class="fh5co-counter-label">Students</span>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-center animate-box">-->
+                    <!--<span class="fh5co-counter js-counter" data-from="0" data-to="30290" data-speed="5000"-->
+                          <!--data-refresh-interval="50"></span>-->
+                    <!--<span class="fh5co-counter-label">Courses</span>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-center animate-box">-->
+                    <!--<span class="fh5co-counter js-counter" data-from="0" data-to="2039" data-speed="5000"-->
+                          <!--data-refresh-interval="50"></span>-->
+                    <!--<span class="fh5co-counter-label">Instructor</span>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-center animate-box">-->
+                    <!--<span class="fh5co-counter js-counter" data-from="0" data-to="997585" data-speed="5000"-->
+                          <!--data-refresh-interval="50"></span>-->
+                    <!--<span class="fh5co-counter-label">Earnings</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div id="fh5co-project">-->
+        <!--<div class="container">-->
+            <!--<div class="row animate-box">-->
+                <!--<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">-->
+                    <!--<h2>Showcase of A Finish Projects</h2>-->
+                    <!--<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.-->
+                        <!--Odit ab aliquam dolor eius.</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="container-fluid proj-bottom">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>数据</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>社交</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>阅读</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-9.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>编程</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-5.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>科技</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">-->
+                    <!--<a href="#"><img src="images/project-6.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"-->
+                                     <!--class="img-responsive">-->
+                        <!--<h3>摄影</h3>-->
+                        <!--<span>查看课程</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--&lt;!&ndash;<div class="features">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="col-md-4 animate-box">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<h4>We have coolest features of this course</h4>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,&ndash;&gt;-->
+                            <!--&lt;!&ndash;there live the blind texts. </p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="col-md-4 animate-box">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<h4>Great teachers that we have</h4>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,&ndash;&gt;-->
+                            <!--&lt;!&ndash;there live the blind texts. </p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="col-md-4 animate-box">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<h4>Steps by steps turorial session</h4>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,&ndash;&gt;-->
+                            <!--&lt;!&ndash;there live the blind texts. </p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="col-md-12 text-center animate-box">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p><a class="btn btn-primary btn-lg btn-learn" href="#">Create A Free Course</a></p>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" title="网站模板">网站模板</a></div>&ndash;&gt;-->
+
+    <!--<div id="fh5co-steps">-->
+        <!--<div class="container">-->
+            <!--<div class="row animate-box">-->
+                <!--<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">-->
+                    <!--<h2>订阅课程</h2>-->
+                    <!--<p>我们为您提供了全面的服务，您可以查看课程的详细信息，尝试订阅，然后在线下参与-->
+                    <!--相关课程的教师也会在网站上对您的成绩进行评估。</p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row bs-wizard animate-box" style="border-bottom:0;">-->
+
+                <!--<div class="col-xs-3 bs-wizard-step complete">-->
+                    <!--<div class="text-center bs-wizard-stepnum"><h4>Step 1</h4></div>-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar"></div>-->
+                    <!--</div>-->
+                    <!--<a href="#" class="bs-wizard-dot"></a>-->
+                    <!--<div class="bs-wizard-info text-center"><p>定制一门课程</p></div>-->
+                <!--</div>-->
+
+                <!--<div class="col-xs-3 bs-wizard-step active">&lt;!&ndash; complete &ndash;&gt;-->
+                    <!--<div class="text-center bs-wizard-stepnum"><h4>Step 2</h4></div>-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar"></div>-->
+                    <!--</div>-->
+                    <!--<a href="#" class="bs-wizard-dot"></a>-->
+                    <!--<div class="bs-wizard-info text-center"><p>进行相关缴费</p></div>-->
+                <!--</div>-->
+
+                <!--<div class="col-xs-3 bs-wizard-step disabled">&lt;!&ndash; complete &ndash;&gt;-->
+                    <!--<div class="text-center bs-wizard-stepnum"><h4>Step 3</h4></div>-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar"></div>-->
+                    <!--</div>-->
+                    <!--<a href="#" class="bs-wizard-dot"></a>-->
+                    <!--<div class="bs-wizard-info text-center"><p>职业教师培训</p></div>-->
+                <!--</div>-->
+
+                <!--<div class="col-xs-3 bs-wizard-step disabled">&lt;!&ndash; active &ndash;&gt;-->
+                    <!--<div class="text-center bs-wizard-stepnum"><h4>Step 4</h4></div>-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar"></div>-->
+                    <!--</div>-->
+                    <!--<a href="#" class="bs-wizard-dot"></a>-->
+                    <!--<div class="bs-wizard-info text-center"><p>获取成绩评估</p></div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="fh5co-testimonial" class="fh5co-bg-section">-->
+        <!--<div class="container">-->
+            <!--<div class="row animate-box">-->
+                <!--<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">-->
+                    <!--<h2>知名教师</h2>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-10 col-md-offset-1">-->
+                    <!--<div class="row animate-box">-->
+                        <!--<div class="owl-carousel owl-carousel-fullwidth">-->
+                            <!--<div class="item">-->
+                                <!--<div class="testimony-slide active text-center">-->
+                                    <!--<figure>-->
+                                        <!--<img src="images/person_1.jpg" alt="user">-->
+                                    <!--</figure>-->
+                                    <!--<span>Jean Doe, via <a href="#" class="twitter">Twitter</a></span>-->
+                                    <!--<blockquote>-->
+                                        <!--<p>&ldquo;Far far away, behind the word mountains, far from the countries-->
+                                            <!--Vokalia and Consonantia, there live the blind texts. Separated they live in-->
+                                            <!--Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>-->
+                                    <!--</blockquote>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="item">-->
+                                <!--<div class="testimony-slide active text-center">-->
+                                    <!--<figure>-->
+                                        <!--<img src="images/person_2.jpg" alt="user">-->
+                                    <!--</figure>-->
+                                    <!--<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>-->
+                                    <!--<blockquote>-->
+                                        <!--<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the-->
+                                            <!--Semantics, a large language ocean.&rdquo;</p>-->
+                                    <!--</blockquote>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="item">-->
+                                <!--<div class="testimony-slide active text-center">-->
+                                    <!--<figure>-->
+                                        <!--<img src="images/person_3.jpg" alt="user">-->
+                                    <!--</figure>-->
+                                    <!--<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>-->
+                                    <!--<blockquote>-->
+                                        <!--<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind-->
+                                            <!--texts. Separated they live in Bookmarksgrove right at the coast of the-->
+                                            <!--Semantics, a large language ocean.&rdquo;</p>-->
+                                    <!--</blockquote>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div id="fh5co-started" style="">-->
+        <!--<div class="overlay"></div>-->
+        <!--<div class="container">-->
+            <!--<div class="row animate-box">-->
+                <!--<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">-->
+                    <!--<h2>开始你的学习之旅！</h2>-->
+                    <!--<p>呸呸培训将竭诚为您服务。</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row animate-box">-->
+                <!--<div class="col-md-8 col-md-offset-2 text-center">-->
+                    <!--<p><a href="#" class="btn btn-default btn-lg">订阅课程</a></p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row row-pb-md">
+
+            <div class="row copyright">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <small class="block">&copy; 2018 PeiPei Company. All Rights Reserved. By - DieDie</small>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </footer>
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+

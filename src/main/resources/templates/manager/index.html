@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>管理员后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Bluth Company">
+    <link rel="shortcut icon" href="assets/ico/favicon.html">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/alertify.css" rel="stylesheet">
+    <link rel="Favicon Icon" href="favicon.ico">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="wrap">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="logo">
+                    <img src="assets/img/logo.png" alt="Realm Admin Template">
+                </div>
+                <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="btn btn-navbar slide_menu_left visible-tablet">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="top-menu visible-desktop">
+                    <!--<ul class="pull-left">-->
+                    <!--<li><a id="messages" data-notification="2" href="#"><i class="icon-envelope"></i> Messages</a></li>-->
+                    <!--<li><a id="notifications" data-notification="3" href="#"><i class="icon-globe"></i> Notifications</a></li>-->
+                    <!--</ul>-->
+                    <ul class="pull-right">
+                        <li><a href="/login"><i class="icon-off"></i> 注销</a></li>
+                    </ul>
+                </div>
+
+                <div class="top-menu visible-phone visible-tablet">
+                    <ul class="pull-right">
+                        <li><a title="link to View all Messages page, no popover in phone view or tablet" href="#"><i
+                                class="icon-envelope"></i></a></li>
+                        <li><a title="link to View all Notifications page, no popover in phone view or tablet" href="#"><i
+                                class="icon-globe"></i></a></li>
+                        <li><a href="login.html"><i class="icon-off"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <!-- Side menu -->
+        <div class="sidebar-nav nav-collapse collapse">
+            <div class="user_side clearfix">
+                <!--<img src="assets/img/odinn.jpg" alt="Odinn god of Thunder">-->
+                <h5>Welcome!<br> 000001</h5>
+                <!--<a href="#"><i class="icon-cog"></i> Settings</a>-->
+            </div>
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle active b_F79999" href="index-2.html"><i class="icon-bar-chart"></i>
+                            <span>首页</span></a>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle b_C3F7A7 collapsed" data-toggle="collapse" data-parent="#accordion2"
+                           href="#collapse1"><i class="icon-magic"></i> <span>查看统计</span></a>
+                    </div>
+                    <div id="collapse1" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <a class="accordion-toggle" href="ui_features.html"><i class="icon-reorder"></i> 机构统计</a>
+                            <a class="accordion-toggle" href="forms.html"><i class="icon-user"></i> 学员统计</a>
+                            <a class="accordion-toggle" href="tables.html"><i class="icon-tasks"></i> 财务情况</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle b_F6F1A2" href="tasks.html"><i class="icon-bullhorn"></i>
+                            <span>审批机构</span></a>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle b_C1F8A9" href="analytics.html"><i class="icon-money"></i>
+                            <span>支付结算</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Side menu -->
+
+        <!-- Main window -->
+        <div class="main_container" id="dashboard_page">
+            <!--<div class="row-fluid">-->
+                <!--<div class="overview_boxes">-->
+                    <!--<div class="box_row clearfix">-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
+                                        <!--<p style="color:#E28271">+85%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="85">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>+530</strong>该月访问量</p>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#98E5EA" class="icon-user"></i>-->
+                                        <!--<p style="color:#98E5EA">+13%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="13">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>57</strong>新用户</p>-->
+
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#AEEA98" class="icon-bullhorn"></i>-->
+                                        <!--<p style="color:#AEEA98">+15%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="15">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>35/235</strong>完成的订单</p>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>7.3k</h2>-->
+                                        <!--<p>Visits</p>-->
+                                      <!--</div>-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#98E5EA" class="icon-user"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>4.2k</h2>-->
+                                        <!--<p>Users</p>-->
+                                      <!--</div>-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#AEEA98" class="icon-bullhorn"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>235</h2>-->
+                                        <!--<p>Tickets</p>-->
+                                      <!--</div>-->
+                                       <!--&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="box_row clearfix">-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#98AEEA" class="icon-credit-card"></i>-->
+                                        <!--<p style="color:#98AEEA">+55%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="55">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>$14,230</strong>收入</p>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#EA98AB" class="icon-thumbs-up"></i>-->
+                                        <!--<p style="color:#EA98AB">+35%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="35">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>152</strong>成交率</p>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="widget-tasks-statistics">-->
+                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+                                    <!--<div class="white">-->
+                                        <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
+                                        <!--<p style="color:#F6BF99">+97%</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="widget">-->
+                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
+                                               <!--data-readOnly=true data-thickness=".15" value="97">-->
+                                    <!--</div>-->
+                                    <!--<p><strong>592</strong>待审核量</p>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#98AEEA" class="icon-thumbs-up"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>152</h2>-->
+                                        <!--<p>New Likes</p>-->
+                                      <!--</div>-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#EA98AB" class="icon-credit-card"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>$14,230</h2>-->
+                                        <!--<p>Income</p>-->
+                                      <!--</div>-->
+                                      <!--<div>-->
+                                        <!--<div class="circle">-->
+                                          <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
+                                        <!--</div>-->
+                                        <!--<h2>92</h2>-->
+                                        <!--<p>Leads Generated</p>-->
+                                      <!--</div>-->
+                                       <!--&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+            <!-- CHARTS  -->
+            <div class="row-fluid">
+                <!--<div class="widget span6">-->
+                <!--<div class="widget-header">-->
+                <!--<i class="icon-bar-chart"></i>-->
+                <!--<h5>周统计</h5>-->
+                <!--<div class="widget-buttons">-->
+                <!--<a href="javascript:void(0)" class="collapse" data-collapsed="false"><i-->
+                <!--data-title="Collapse" class="icon-chevron-up"></i></a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="widget-body clearfix">-->
+                <!--<div class="widget-analytics-small">-->
+                <!--<ul>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">1,5,10,5,25,30,12,22</span>-->
+                <!--<h5>学员：</h5>-->
+                <!--<h4>502</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">5,4,5,7,8,1,1,20,2</span>-->
+                <!--<h5>机构：</h5>-->
+                <!--<h4>420</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">5,3,3,98,102,155,150,187,196</span>-->
+                <!--<h5>订单：</h5>-->
+                <!--<h4>2054</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">5,44,53,66,378,771,341,520,452</span>-->
+                <!--<h5>课程：</h5>-->
+                <!--<h4>5.8</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">5,4,35,57,28,16,11,20,72</span>-->
+                <!--<h5>交易额：</h5>-->
+                <!--<h4>00:10:34</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">52,44,65,27,86,14,16,40,22</span>-->
+                <!--<h5>成交率：</h5>-->
+                <!--<h4>30.30%</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="inlinesparkline">5,6,7,9,10,20,25,22,21</span>-->
+                <!--<h5>新用户：</h5>-->
+                <!--<h4>29.35%</h4>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div> &lt;!&ndash; /widget body &ndash;&gt;-->
+                <!--</div> &lt;!&ndash; /widget span12 &ndash;&gt;-->
+                <div class="widget span4">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>近7天成交量</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:274px;" id="volume" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+                <div class="widget span8">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>近7天交易额</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:274px;" id="profit" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+            </div> <!-- /row-fluid -->
+
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-bar-chart"></i>
+                        <h5>机构统计信息</h5>
+                        <div class="widget-buttons">
+                            <a href="http://www.datatables.net/usage/" data-title="Documentation" class="tip"
+                               target="_blank"><i class="icon-external-link"></i></a>
+                            <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <table class="table table-striped table-bordered dataTable">
+                            <thead>
+                            <tr>
+                                <th>机构编号</th>
+                                <th>本周盈利额</th>
+                                <th>盈利额上涨率</th>
+                                <th>本周成交量</th>
+                                <th>成交量上涨率</th>
+                                <th>总盈利额</th>
+                                <th>总成交量</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr th:each="institutionStatistics,iterStat : ${institutionStatisticsList}">
+                                <td th:text="${institutionStatistics.institutionID}"></td>
+                                <td th:text="${institutionStatistics.weekProfit}"></td>
+                                <td th:text="${institutionStatistics.profitRise}"></td>
+                                <td th:text="${institutionStatistics.weekVolume}"></td>
+                                <td th:text="${institutionStatistics.volumeRise}"></td>
+                                <td th:text="${institutionStatistics.totalProfit}"></td>
+                                <td th:text="${institutionStatistics.totalVolume}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-bar-chart"></i>
+                        <h5>学员统计信息</h5>
+                        <div class="widget-buttons">
+                            <a href="http://www.datatables.net/usage/" data-title="Documentation" class="tip"
+                               target="_blank"><i class="icon-external-link"></i></a>
+                            <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <table class="table table-striped table-bordered dataTable">
+                            <thead>
+                            <tr>
+                                <th>会员账号</th>
+                                <th>本周消费额</th>
+                                <th>消费额上涨率</th>
+                                <th>本周成交量</th>
+                                <th>成交量上涨率</th>
+                                <th>总消费额</th>
+                                <th>总成交量</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr th:each="traineeStatistics,iterStat : ${traineeStatisticsList}">
+                                <td th:text="${traineeStatistics.traineeID}"></td>
+                                <td th:text="${traineeStatistics.weekConsumption}"></td>
+                                <td th:text="${traineeStatistics.consumptionRise}"></td>
+                                <td th:text="${traineeStatistics.weekVolume}"></td>
+                                <td th:text="${traineeStatistics.volumeRise}"></td>
+                                <td th:text="${traineeStatistics.totalConsumption}"></td>
+                                <td th:text="${traineeStatistics.totalVolume}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+
+
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-group"></i>
+                        <h5>待审批机构申请</h5>
+                        <div class="widget-buttons">
+                            <a href="http://www.datatables.net/usage/" data-title="Documentation" class="tip"
+                               target="_blank"><i class="icon-external-link"></i></a>
+                            <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <table id="users" class="table table-striped table-bordered dataTable">
+                            <thead>
+                            <tr>
+                                <th>机构编号</th>
+                                <th>机构名</th>
+                                <th>申请原因</th>
+                                <th>申请类型</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr th:each="institutionApplication,iterStat : ${applicationList}">
+                                <td th:text="${institutionApplication.applicationID}"></td>
+                                <td th:text="${institutionApplication.name}"></td>
+                                <td th:text="${institutionApplication.reason}"></td>
+                                <!--<td>2017-11-10</td>-->
+                                <td><span class="label label-success" th:text="${institutionApplication.type}"></span>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+                                            操作
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a th:href="'/acceptApplication?applicationID='+${institutionApplication.applicationID}"><i
+                                                        class="icon-envelope"></i> 接受</a></li>
+                                            <li>
+                                                <a th:href="'/rejectApplication?applicationID='+${institutionApplication.applicationID}"><i
+                                                        class="icon-edit"></i> 拒绝</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-group"></i>
+                        <h5>按比例支付结算</h5>
+                        <div class="widget-buttons">
+                            <a href="http://www.datatables.net/usage/" data-title="Documentation" class="tip"
+                               target="_blank"><i class="icon-external-link"></i></a>
+                            <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <table id="" class="table table-striped table-bordered dataTable">
+                            <thead>
+                            <tr>
+                                <th>机构编号</th>
+                                <th>未结算金额</th>
+                                <th>结算比例</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr th:each="unsettled,iterStat : ${unsettledList}">
+                                <td th:text="${unsettled.institutionID}" th:id="${unsettled.institutionID}"
+                                    name="institutionID"></td>
+                                <td th:id="'profit'+${unsettled.institutionID}" th:value="${unsettled.unsettledProfit}"
+                                    name="profit"
+                                    th:text="${unsettled.unsettledProfit}"></td>
+                                <!--<td>2017-11-10</td>-->
+                                <td>
+                                    <input th:id="'proportion'+${unsettled.institutionID}" type="number" step="0.01"
+                                           value="1" name="proportion">
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <input th:id="'settle'+${unsettled.institutionID}" type="button" value="结算"
+                                               class="active-btn btn-small" onclick="settleOne(this)">
+                                    </div>
+                                </td>
+                            </tr>
+                            <td></td>
+                            <td></td>
+                            <!--<td>2017-11-10</td>-->
+                            <td>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <input type="button" value="一键结算" class="active-btn btn-small"
+                                           onclick="settleAll(this)">
+                                </div>
+                            </td>
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+        </div>
+        <!-- /Main window -->
+
+    </div><!--/.fluid-container-->
+</div><!-- wrap ends-->
+
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="assets/js/raphael-min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<script type="text/javascript" src='assets/js/sparkline.js'></script>
+<script type="text/javascript" src='assets/js/morris.min.js'></script>
+<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.facybox.js"></script>
+<script type="text/javascript" src="assets/js/jquery.alertify.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.knob.js"></script>
+<script type='text/javascript' src='assets/js/fullcalendar.min.js'></script>
+<!--<script type='text/javascript' src='assets/js/jquery.gritter.min.js'></script>-->
+<script type="text/javascript" src="assets/js/realm.js"></script>
+<script type="text/javascript" src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="echarts/echarts-all.js"></script>
+<script th:inline="javascript">
+
+    function settleOne(obj) {
+        var institutionID = obj.id.split("settle")[1];
+        var profit = document.getElementById("profit" + institutionID).innerText;
+        var proportion = document.getElementById("proportion" + institutionID).value;
+        if (proportion <= 1 && proportion > 0) {
+            $.ajax({
+                type: 'post',
+                url: '/settleOne',
+                data: {institutionID: institutionID, profit: profit, proportion: proportion},
+                success: function () {
+                    alert("结算成功！")
+                    window.location.reload();
+                }
+            })
+        } else {
+            alert("支付比例区间在0-1内！")
+        }
+    }
+
+    function settleAll() {
+        var $id = document.getElementsByName("institutionID");
+        var $profit = document.getElementsByName("profit");
+        var $proportion = document.getElementsByName("proportion");
+        var id = new Array();
+        var profit = new Array();
+        var proportion = new Array();
+        var right = true;
+        for (var i = 0; i < $id.length; i++) {
+            id[i] = parseInt($id.item(i).id);
+            profit[i] = parseFloat($profit.item(i).value);
+            proportion[i] = parseFloat($proportion.item(i).value);
+            if (profit[i] > 1 || profit[i] <= 0) {
+                right = false;
+            }
+        }
+        if (right) {
+            $.ajax({
+                type: 'post',
+                url: '/settleAll',
+                data: {
+                    institutionID: JSON.stringify(id),
+                    profit: JSON.stringify(profit),
+                    proportion: JSON.stringify(proportion)
+                },
+                success: function () {
+                    alert("结算成功！")
+                    window.location.reload();
+                }
+            })
+        } else {
+            alert("支付比例区间在0-1内！")
+        }
+    }
+
+    var profitChart = echarts.init(document.getElementById('profit'));
+    profitChart.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: true},
+
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: [[${dateList}]]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                // name:'',
+                type: 'line',
+                data: [[${priceList}]]
+            },
+
+        ]
+    });
+    var volumeChart = echarts.init(document.getElementById('volume'));
+    volumeChart.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: true},
+
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: [[${dateList}]]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                // name:'',
+                type: 'bar',
+                data: [[${numberList}]]
+            },
+
+        ]
+    });
+    window.onresize = function () {
+        profitChart.resize();
+    }
+
+</script>
+</body>
+</html>

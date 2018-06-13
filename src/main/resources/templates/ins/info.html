@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>机构信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <script th:inline="javascript">
+        window.onload = function () {
+        }
+    </script>
+</head>
+<body>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <p class="num">Call: +01 123 456 7890</p>
+                        <ul class="fh5co-social">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div id="fh5co-logo"><a href="hello">Learn<span>.</span></a></div>
+                    </div>
+                    <div class="col-xs-11 text-right menu-1">
+                        <ul>
+                            <li><a href="/indexForIns">首页</a></li>
+                            <li><a href="/releaseCourse">发布课程</a></li>
+                            <li class="active"><a href="/infoForIns">机构信息</a></li>
+                            <li><a href="/statistics">查看统计</a></li>
+                            <li><a href="/onSitePay">现场缴费</a></li>
+                            <li><a href="/registrationList">听课登记</a>
+
+                            </li>
+
+                            <li class="btn-cta"><a href="/logout"><span>注销</span></a></li>
+                            <!--<li class="btn-cta"><a href="#"><span>申请机构</span></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <header id="fh5co-header" class="fh5co-cover" role="banner"
+            style=""
+            data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>机构信息</h1>
+                            <h2>您可以查看并修改您的机构信息，并提交给管理员审核。
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="fh5co-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-push-1 animate-box">
+
+                    <div class="fh5co-contact-info">
+                        <h3>您的信息</h3>
+                        <form th:action="@{/saveInfoForIns}" th:object="${application}">
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="applicationId">编号：</label>
+                                    <input type="text" id="applicationId" class="form-control"  readonly th:value="${application.applicationID}" th:field="*{applicationID}">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="password">密码：</label>
+                                    <input type="text" id="password" class="form-control"  readonly th:value="${application.password}" th:field="*{password}">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">名称：</label>
+                                    <input type="text" id="name" class="form-control" th:value="${application.name}" th:field="*{name}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="teacher">教师：</label>
+                                    <input type="text" id="teacher" class="form-control"  th:value="${application.teacher}" th:field="*{teacher}">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="location">地点：</label>
+                                    <input type="text" id="location" class="form-control"  th:value="${application.location}" th:field="*{location}">
+                                </div>
+                            </div>
+
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="introduction">介绍：</label>
+                                    <textarea name="introduction" id="introduction" cols="30" rows="10" class="form-control" th:value="${application.introduction}" th:field="*{introduction}" style="height: 150px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="reason">修改原因：</label>
+                                    <textarea name="reason" id="reason" cols="30" rows="10" class="form-control" th:field="*{reason}" style="height: 150px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="申请修改" class="btn btn-primary" >
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <!--<div class="col-md-6 animate-box" style="margin-left: 10%;width: 450px;">-->
+                    <!--<h3>您的积分</h3>-->
+                    <!--<label >会员等级：</label><lable>1</lable><br>-->
+                    <!--<span>当前等级可享受折扣为：9折。</span><br>-->
+                    <!--<label >当前积分：</label><label>30</label><br>-->
+                    <!--<span>还差20分可以到下一等级。</span><br>-->
+                    <!--<label> 可兑换现金券：</label>-->
+                    <!--<form>-->
+                        <!--<ul class="list">-->
+                            <!--<li>-->
+                                <!--<input tabindex="11" type="radio" id="square-radio-1" name="square-radio">-->
+                                <!--<label for="square-radio-1">10积分换取20元现金券。</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<input tabindex="12" type="radio" id="square-radio-2" name="square-radio" >-->
+                                <!--<label for="square-radio-2">20积分换取30元现金券。</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<input type="radio" id="square-radio-disabled" name="square-radio">-->
+                                <!--<label for="square-radio-disabled">40积分换取50元现金券。</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<input type="radio" id="square-radio-disabled-checked" name="square-radio">-->
+                                <!--<label for="square-radio-disabled-checked">100积分换取100元现金券。</label>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</form>-->
+
+                <!--</div>-->
+            </div>
+
+        </div>
+    </div>
+
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row row-pb-md">
+                <!--<div class="col-md-3 fh5co-widget">-->
+                <!--<h4>About Learning</h4>-->
+                <!--<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta-->
+                <!--adipisci architecto culpa amet.</p>-->
+                <!--</div>-->
+                <!--<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">-->
+                <!--<h4>Learning</h4>-->
+                <!--<ul class="fh5co-footer-links">-->
+                <!--<li><a href="#">Course</a></li>-->
+                <!--<li><a href="#">Blog</a></li>-->
+                <!--<li><a href="#">Contact</a></li>-->
+                <!--<li><a href="#">Terms</a></li>-->
+                <!--<li><a href="#">Meetups</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">-->
+                <!--<h4>Learn &amp; Grow</h4>-->
+                <!--<ul class="fh5co-footer-links">-->
+                <!--<li><a href="#">Blog</a></li>-->
+                <!--<li><a href="#">Privacy</a></li>-->
+                <!--<li><a href="#">Testimonials</a></li>-->
+                <!--<li><a href="#">Handbook</a></li>-->
+                <!--<li><a href="#">Held Desk</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">-->
+                <!--<h4>Engage us</h4>-->
+                <!--<ul class="fh5co-footer-links">-->
+                <!--<li><a href="#">Marketing</a></li>-->
+                <!--<li><a href="#">Visual Assistant</a></li>-->
+                <!--<li><a href="#">System Analysis</a></li>-->
+                <!--<li><a href="#">Advertise</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">-->
+                <!--<h4>Legal</h4>-->
+                <!--<ul class="fh5co-footer-links">-->
+                <!--<li><a href="#">Find Designers</a></li>-->
+                <!--<li><a href="#">Find Developers</a></li>-->
+                <!--<li><a href="#">Teams</a></li>-->
+                <!--<li><a href="#">Advertise</a></li>-->
+                <!--<li><a href="#">API</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="row copyright">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <small class="block">&copy; 2018 PeiPei Company. All Rights Reserved. By - DieDie</small>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+

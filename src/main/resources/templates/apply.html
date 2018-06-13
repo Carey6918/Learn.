@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>申请机构</title>
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <p class="num">Call: +01 123 456 7890</p>
+                        <ul class="fh5co-social">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div id="fh5co-logo"><a href="index.html">Learn<span>.</span></a></div>
+                    </div>
+                    <div class="col-xs-11 text-right menu-1">
+                        <ul>
+                            <li><a href="/index">首页</a></li>
+                            <li><a href="/courses">订阅课程</a></li>
+                            <li><a href="/info">个人信息</a></li>
+                            <li class="has-dropdown">
+                                <a href="/getOrderList" >我订阅的</a>
+                                <ul class="dropdown">
+                                    <li><a href="/getOrderList?state=未开始">未开始</a></li>
+                                    <li><a href="/getOrderList?state=进行中">进行中</a></li>
+                                    <li><a href="/getOrderList?state=已完成">已完成</a></li>
+                                    <li><a href="/getOrderList?state=已退订">已退订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/contact">联系我们</a></li>
+
+                            <li class="btn-cta"><a href="/logout"><span>注销</span></a></li>
+                            <li class="btn-cta"><a href="/applyInstitution"><span>申请机构</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"  data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>申请机构</h1>
+                            <h2>您可以申请在本平台登记机构，通过后即可发布课程。</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fh5co-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-push-1 animate-box">
+
+                    <div class="fh5co-contact-info">
+                        <h3>机构信息</h3>
+                        <form th:action="@{/applySuccess}" th:object="${application}">
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="applicationId">编号：</label>
+                                    <input type="text" id="applicationId" class="form-control"  readonly  value="系统为您自动分配" >
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="password">密码：</label>
+                                    <input type="text" id="password" class="form-control"  th:field="*{password}">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">名称：</label>
+                                    <input type="text" id="name" class="form-control" th:field="*{name}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="teacher">教师：</label>
+                                    <input type="text" id="teacher" class="form-control"  th:field="*{teacher}">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="location">地点：</label>
+                                    <input type="text" id="location" class="form-control"  th:field="*{location}">
+                                </div>
+                            </div>
+
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="introduction">介绍：</label>
+                                    <textarea name="introduction" id="introduction" cols="30" rows="10" class="form-control" th:field="*{introduction}" style="height: 150px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="reason">申请原因：</label>
+                                    <textarea name="reason" id="reason" cols="30" rows="10" class="form-control" th:field="*{reason}" style="height: 150px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="申请机构" class="btn btn-primary" >
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row row-pb-md">
+
+                <div class="row copyright">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <small class="block">&copy; 2018 PeiPei Company. All Rights Reserved. By - DieDie</small>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
