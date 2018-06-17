@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.example.demo.util.GetDate.*;
+
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
     @Autowired
@@ -32,15 +34,14 @@ public class StatisticsServiceImpl implements StatisticsService {
     ConsumptionService consumptionService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    StatisticByTimeDao statisticByTimeDao;
 
     @Override
     public void updateTraineeStatistics() {
         List<Trainee> traineeList = traineeDao.getList();
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0); //关键的一步，很多时候忽略了毫秒置0，而无法查询出想要的结果
+        calToDate(cal);
         Date date = cal.getTime();
         cal.add(Calendar.DATE, -7);
 //        Date date1 = cal.getTime();
@@ -66,9 +67,9 @@ public class StatisticsServiceImpl implements StatisticsService {
                 consumptionRise = (weekConsumption - traineeStatistics.getWeekConsumption()) / traineeStatistics.getWeekConsumption() * 100;
             }
             double totalConsumption = traineeStatistics.getTotalConsumption() + weekConsumption;
-            double volumeRise =1;
-            if (traineeStatistics.getWeekVolume()!=0) {
-                 volumeRise = (weekVolume - traineeStatistics.getWeekVolume()) / traineeStatistics.getWeekVolume();
+            double volumeRise = 1;
+            if (traineeStatistics.getWeekVolume() != 0) {
+                volumeRise = (weekVolume - traineeStatistics.getWeekVolume()) / traineeStatistics.getWeekVolume();
             }
             int totalVolume = traineeStatistics.getTotalVolume() + weekVolume;
             traineeStatistics.setWeekConsumption(weekConsumption);
@@ -83,14 +84,12 @@ public class StatisticsServiceImpl implements StatisticsService {
         System.out.println("成功更新学员统计！");
     }
 
+
     @Override
     public void updateInstitutionStatistics() {
         List<Institution> institutionList = institutionDao.getList();
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0); //关键的一步，很多时候忽略了毫秒置0，而无法查询出想要的结果
+        calToDate(cal);
         Date date = cal.getTime();
         cal.add(Calendar.DATE, -7);
 //        Date date1 = cal.getTime();
@@ -133,60 +132,80 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     }
 
-       @Override
-    public List<TraineeStatistics> getTraineeStatistics(){
+    @Override
+    public List<TraineeStatistics> getTraineeStatistics() {
         return traineeStatisticsDao.getList();
     }
 
     @Override
-    public List<InstitutionStatistics> getInstitutionStatistics(){
+    public List<InstitutionStatistics> getInstitutionStatistics() {
         return institutionStatisticsDao.getList();
     }
 
+
     /**
-     * 判断日期是否在区间内
-     *
-     * @param nowTime
-     * @param startTime
-     * @param endTime
-     * @return
+     * 更新每日数据
      */
-    public static boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
-        if (nowTime.getTime() == startTime.getTime()
-                || nowTime.getTime() == endTime.getTime()) {
-            return true;
+    @Override
+    public void updateStatisticsByTime() {
+        List<Date> dateList = getDateAfter(1);
+        List<Trainee> traineeList = traineeDao.getList();
+
+        //获取学员当日的消费额数据
+        for (Trainee trainee : traineeList) {
+            List<Consumption> consumptionList = consumptionDao.findByTraineeID(trainee.getEmail());
+            double profit = 0;
+            for (Consumption consumption : consumptionList) {
+                if (isEffectiveDate(consumption.getTime(), dateList.get(0), dateList.get(1))) {
+                    profit += consumption.getPrice();
+                }
+            }
+            List<Order> orderList = orderDao.findByTraineeID(trainee.getEmail());
+            int volumn = 0;
+            for (Order order : orderList) {
+                if (!order.getState().equals("已退订") && isEffectiveDate(order.getCreateTime(), dateList.get(0), dateList.get(1))) {
+                    volumn++;
+                }
+            }
+            StatisticByTime statisticByTime = new StatisticByTime(dateList.get(0), 3, trainee.getEmail(), volumn, profit);
+            statisticByTimeDao.save(statisticByTime);
         }
 
-        Calendar date = Calendar.getInstance();
-        date.setTime(nowTime);
+        List<Institution> institutionList = institutionDao.getList();
+        for (Institution institution : institutionList) {
+            List<Consumption> consumptionList = consumptionService.getConsumptionsByIns(institution.getInstitutionID());
+            double profit = 0;
+            for (Consumption consumption : consumptionList) {
+                if (isEffectiveDate(consumption.getTime(), dateList.get(0), dateList.get(1))) {
+                    profit += consumption.getPrice();
+                }
+            }
 
-        Calendar begin = Calendar.getInstance();
-        begin.setTime(startTime);
-
-        Calendar end = Calendar.getInstance();
-        end.setTime(endTime);
-
-        if (date.after(begin) && date.before(end)) {
-            return true;
-        } else {
-            return false;
+            List<Order> orderList = orderService.getReservedOrder(institution.getInstitutionID());
+            int volumn = 0;
+            for (Order order : orderList) {
+                if (isEffectiveDate(order.getCreateTime(), dateList.get(0), dateList.get(1))) {
+                    volumn++;
+                }
+            }
+            StatisticByTime statisticByTime = new StatisticByTime(dateList.get(0), 2, String.valueOf(institution.getInstitutionID()), volumn, profit);
+            statisticByTimeDao.save(statisticByTime);
         }
-    }
 
-    public static Date getThisWeekMonday(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        // 获得当前日期是一个星期的第几天
-        int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
-        if (1 == dayWeek) {
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+        List<Consumption> consumptionList = consumptionDao.findByTimeBetween(dateList.get(0), dateList.get(1));
+        double profit =0;
+        for (Consumption consumption : consumptionList) {
+                profit += consumption.getPrice();
         }
-        // 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一
-        cal.setFirstDayOfWeek(Calendar.MONDAY);
-        // 获得当前日期是一个星期的第几天
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        // 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
-        cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
-        return cal.getTime();
+        List<Order> orderList = orderDao.findByCreateTimeBetween(dateList.get(0), dateList.get(1));
+        int volumn =0;
+        for (Order order : orderList) {
+            if (!order.getState().equals("已退订") ) {
+                volumn++;
+            }
+        }
+        StatisticByTime statisticByTime = new StatisticByTime(dateList.get(0), 1, "0", volumn, profit);
+        statisticByTimeDao.save(statisticByTime);
+
     }
 }

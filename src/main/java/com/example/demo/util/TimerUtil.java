@@ -32,6 +32,7 @@ public class TimerUtil {
         orderService.updateState();
         profitService.updateProfit();
         profitService.updateVolume();
+        statisticsService.updateStatisticsByTime();
     }
 
     @Scheduled(cron = "0 0 0 ? * MON")
@@ -40,5 +41,6 @@ public class TimerUtil {
         statisticsService.updateTraineeStatistics();
     }
 
+//    @Scheduled
 
 }

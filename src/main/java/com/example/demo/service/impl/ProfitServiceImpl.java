@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.example.demo.util.GetDate.getDateAfter;
+
 @Service
 public class ProfitServiceImpl implements ProfitService{
     @Autowired
@@ -65,19 +67,6 @@ public class ProfitServiceImpl implements ProfitService{
         List<Date> dateList = getDateAfter(-7);
         return volumeDao.findByDateBetween(dateList.get(1),dateList.get(0));
     }
-    public static List<Date> getDateAfter(int num){
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar .HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0); //关键的一步，很多时候忽略了毫秒置0，而无法查询出想要的结果
-        Date date = cal.getTime();
-        cal.add(Calendar.DATE,num);
-        Date date1 = cal.getTime();
-        List<Date> dateList = new LinkedList<>();
-        dateList.add(date);
-        dateList.add(date1);
-        return dateList;
-    }
+    
 
 }

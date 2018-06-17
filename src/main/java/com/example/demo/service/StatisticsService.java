@@ -13,4 +13,6 @@ public interface StatisticsService {
     List<TraineeStatistics> getTraineeStatistics();
 
     List<InstitutionStatistics> getInstitutionStatistics();
+
+    void updateStatisticsByTime();
 }

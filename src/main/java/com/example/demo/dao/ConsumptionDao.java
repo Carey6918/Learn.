@@ -18,4 +18,6 @@ public interface ConsumptionDao extends JpaRepository<Consumption,Integer>{
     List<Consumption> findByTime(Date date);
     List<Consumption> findByTimeBetweenAndTraineeID(Date date1,Date date2,String traineeID);
     List<Consumption> findByTimeBetweenAndOrderID(Date date1,Date date2,int orderID);
+
+
 }
