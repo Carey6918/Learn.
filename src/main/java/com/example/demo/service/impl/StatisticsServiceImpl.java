@@ -36,6 +36,10 @@ public class StatisticsServiceImpl implements StatisticsService {
     OrderService orderService;
     @Autowired
     StatisticByTimeDao statisticByTimeDao;
+    @Autowired
+    CourseDao courseDao;
+    @Autowired
+    RecordDao recordDao;
 
     @Override
     public void updateTraineeStatistics() {
@@ -142,6 +146,35 @@ public class StatisticsServiceImpl implements StatisticsService {
         return institutionStatisticsDao.getList();
     }
 
+    @Override
+    public List<StatisticByTime> getTimeStatistics(String id) {
+        return statisticByTimeDao.findByKeyId(id);
+    }
+
+    @Override
+    public InsPercentVO getInsPercent(String id) {
+        InsPercentVO insPercentVO = new InsPercentVO();
+        List<Order> orderList = orderDao.findByTraineeID(id);
+        for (Order order : orderList) {
+            Course course = courseDao.findByCourseID(order.getCourseID());
+            insPercentVO.addIns(course.getInstitutionName(), 1);
+        }
+
+        return insPercentVO;
+    }
+
+    @Override
+    public CourseGradeVO getCourseGrade(String id) {
+        CourseGradeVO courseGradeVO = new CourseGradeVO();
+        List<ClassRecord> classRecords = recordDao.findByTraineeID(id);
+        for (ClassRecord record : classRecords) {
+            if (record.getGrade() != 0) {
+                Course course = courseDao.findByCourseID(record.getCourseID());
+                courseGradeVO.addCourse(course.getType(), record.getGrade());
+            }
+        }
+        return courseGradeVO;
+    }
 
     /**
      * 更新每日数据
@@ -193,14 +226,14 @@ public class StatisticsServiceImpl implements StatisticsService {
         }
 
         List<Consumption> consumptionList = consumptionDao.findByTimeBetween(dateList.get(0), dateList.get(1));
-        double profit =0;
+        double profit = 0;
         for (Consumption consumption : consumptionList) {
-                profit += consumption.getPrice();
+            profit += consumption.getPrice();
         }
         List<Order> orderList = orderDao.findByCreateTimeBetween(dateList.get(0), dateList.get(1));
-        int volumn =0;
+        int volumn = 0;
         for (Order order : orderList) {
-            if (!order.getState().equals("已退订") ) {
+            if (!order.getState().equals("已退订")) {
                 volumn++;
             }
         }

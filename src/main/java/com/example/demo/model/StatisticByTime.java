@@ -1,11 +1,12 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "StatisticByTime")
-public class StatisticByTime {
+@Table(name = "statisticByTime")
+public class StatisticByTime implements Serializable{
 
     //private Date date;
     private int type;//1表示管理员，2表示机构，3表示用户
@@ -13,22 +14,23 @@ public class StatisticByTime {
     private int volume;
     private double profit;
     private StatisticKey key;
+    public StatisticByTime(){
 
+    }
     public StatisticByTime(Date date, int type,String id, int volume, double profit){
-        this.key.date =date;
+        this.key = new StatisticKey(date,id);
         this.type = type;
-        this.key.id = id;
         this.volume = volume;
         this.profit = profit;
     }
 
-    public Date getDate() {
-        return key.date;
-    }
-
-    public void setDate(Date date) {
-        this.key.date = date;
-    }
+//    public Date getDate() {
+//        return key.getDate();
+//    }
+//
+//    public void setDate(Date date) {
+//        this.key.setDate(date);
+//    }
 
     @Column(name = "type")
     public int getType() {
@@ -40,13 +42,13 @@ public class StatisticByTime {
     }
 
 
-    public String getId() {
-        return key.id;
-    }
-
-    public void setId(String id) {
-        this.key.id = id;
-    }
+//    public String getId() {
+//        return key.getId();
+//    }
+//
+//    public void setId(String id) {
+//        this.key.setId(id);
+//    }
 
     @Column(name = "volume")
     public int getVolume() {
@@ -69,5 +71,9 @@ public class StatisticByTime {
     @EmbeddedId
     public StatisticKey getKey(){
         return this.key;
+    }
+
+    public void setKey(StatisticKey key) {
+        this.key = key;
     }
 }

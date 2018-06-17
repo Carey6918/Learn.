@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Consumption;
-import com.example.demo.model.Trainee;
+import com.example.demo.model.*;
 import com.example.demo.service.ConsumptionService;
+import com.example.demo.service.StatisticsService;
 import com.example.demo.service.TraineeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -23,6 +26,9 @@ public class TraineeController {
 
     @Autowired
     private ConsumptionService consumptionService;
+
+    @Autowired
+    private StatisticsService statisticsService;
     public TraineeController() {
 
     }
@@ -40,6 +46,24 @@ public class TraineeController {
         model.addAttribute("user",trainee);
         List<Consumption> consumptionList = consumptionService.getConsumptionsByTrainee(email);
         model.addAttribute("consumptionList",consumptionList);
+        List<StatisticByTime> statisticByTimeList = statisticsService.getTimeStatistics(email);
+        List<String> dateList = new LinkedList<>();
+        List<Double> profitList = new LinkedList<>();
+        List<Integer> volumeList = new LinkedList<>();
+        for(int i = 0 ; i< statisticByTimeList.size();i++){
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(statisticByTimeList.get(i).getKey().getDate());
+            dateList.add(date);
+            profitList.add(statisticByTimeList.get(i).getProfit());
+            volumeList.add(statisticByTimeList.get(i).getVolume());
+        }
+        model.addAttribute("profitList",profitList);
+        model.addAttribute("dateList",dateList);
+        model.addAttribute("volumeList",volumeList);
+        InsPercentVO insPercentVO = statisticsService.getInsPercent(email);
+        model.addAttribute("insPercent",insPercentVO);
+        CourseGradeVO courseGradeVO = statisticsService.getCourseGrade(email);
+        model.addAttribute("courseGrade",courseGradeVO);
         return "info";
     }
 

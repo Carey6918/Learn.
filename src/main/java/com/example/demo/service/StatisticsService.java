@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.InstitutionStatistics;
-import com.example.demo.model.TraineeStatistics;
+import com.example.demo.model.*;
 
 import java.util.List;
 
@@ -13,6 +12,12 @@ public interface StatisticsService {
     List<TraineeStatistics> getTraineeStatistics();
 
     List<InstitutionStatistics> getInstitutionStatistics();
+
+    List<StatisticByTime> getTimeStatistics(String id);
+
+    InsPercentVO getInsPercent(String id);
+
+    CourseGradeVO getCourseGrade(String id);
 
     void updateStatisticsByTime();
 }

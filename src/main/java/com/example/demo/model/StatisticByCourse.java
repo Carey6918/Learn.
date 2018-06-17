@@ -2,8 +2,9 @@ package com.example.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.io.Serializable;
 
-public class StatisticByCourse {
+public class StatisticByCourse implements Serializable{
     private int id;
     private int institutionID;
     private int volume;

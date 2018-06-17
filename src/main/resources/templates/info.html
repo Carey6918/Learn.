@@ -34,6 +34,8 @@
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
 
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
@@ -259,7 +261,63 @@
             </div>
         </div>
     </div>
-
+    <div class="widget  col-md-10" style="    left: 8.33333%;
+    margin-top: 30px;">
+        <div class="widget-header">
+            <i class="icon-credit-card"></i>
+            <h5>成交量</h5>
+            <div class="widget-buttons">
+                <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                        data-title="Collapse" class="icon-chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="widget-body clearfix" >
+            <div style="height:300px;" id="volume" class="widget-analytics-large"></div>
+        </div>
+    </div>
+    <div class="widget  col-md-10" style="    left: 8.33333%;
+    margin-top: 30px;">
+        <div class="widget-header">
+            <i class="icon-credit-card"></i>
+            <h5>交易额</h5>
+            <div class="widget-buttons">
+                <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                        data-title="Collapse" class="icon-chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="widget-body clearfix">
+            <div style="height:300px;" id="profit" class="widget-analytics-large"></div>
+        </div>
+    </div>
+    <div class="widget  col-md-5" style="    left: 8.33333%;
+    margin-top: 30px;">
+        <div class="widget-header">
+            <i class="icon-credit-card"></i>
+            <h5>各个机构所占的成交订单的百分比</h5>
+            <div class="widget-buttons">
+                <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                        data-title="Collapse" class="icon-chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="widget-body clearfix">
+            <div style="height:300px;" id="percent" class="widget-analytics-large"></div>
+        </div>
+    </div>
+    <div class="widget  col-md-5" style="    left: 8.33333%;
+    margin-top: 30px;">
+        <div class="widget-header">
+            <i class="icon-credit-card"></i>
+            <h5>各个课程类型的平均成绩</h5>
+            <div class="widget-buttons">
+                <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                        data-title="Collapse" class="icon-chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="widget-body clearfix">
+            <div style="height:300px;" id="grade" class="widget-analytics-large"></div>
+        </div>
+    </div>
+</div> <!-- /row-fluid -->
 
     <div class="row copyright">
         <div class="col-md-12 text-center">
@@ -277,8 +335,8 @@
     <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
 
-<!-- jQuery -->
-<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <!-- jQuery Easing -->
 <script src="js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
@@ -294,12 +352,226 @@
 <!-- Magnific Popup -->
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/magnific-popup-options.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-<script src="js/google_map.js"></script>
 <!-- Main -->
+<script type="text/javascript" src="assets/js/raphael-min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<script type="text/javascript" src='assets/js/sparkline.js'></script>
+<script type="text/javascript" src='assets/js/morris.min.js'></script>
+<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.facybox.js"></script>
+<script type="text/javascript" src="assets/js/jquery.alertify.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.knob.js"></script>
+<script type='text/javascript' src='assets/js/fullcalendar.min.js'></script>
+<!--<script type='text/javascript' src='assets/js/jquery.gritter.min.js'></script>-->
+<script type="text/javascript" src="assets/js/realm.js"></script>
+<script type="text/javascript" src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="echarts/echarts.common.min.js"></script>
+<script src="echarts/echarts.js"></script>
+<!--<script src="echarts/echarts-all.js"></script>-->
 <script src="js/main.js"></script>
+<script th:inline="javascript">
+    var profitChart = echarts.init(document.getElementById('profit'));
+    profitChart.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                mark: {show: true},
+                dataView: {show: true, readOnly: true},
 
+            }
+        },
+
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: [[${dateList}]]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                // name:'',
+                type: 'line',
+                data: [[${profitList}]]
+            }
+
+        ],
+        dataZoom: [
+            {
+                show: true,
+                realtime: true,
+
+            }
+        ],
+    });
+    var volumeChart = echarts.init(document.getElementById('volume'));
+    volumeChart.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: true},
+
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: [[${dateList}]]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                // name:'',
+                type: 'bar',
+                data: [[${volumeList}]]
+            }
+
+        ],
+        dataZoom: [
+            {
+                show: true,
+                realtime: true,
+
+            },
+            {
+                type: 'inside',
+                realtime: true,
+            }
+        ],
+    });
+    var percentChart = echarts.init(document.getElementById('percent'));
+    var data = getInsPercentData();
+    percentChart.setOption({
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 10,
+            top: 20,
+            bottom: 20,
+            data:data.legendData
+        },
+        series : [
+            {
+                name: '机构',
+                type: 'pie',
+                radius : '55%',
+                center: ['40%', '50%'],
+                data:data.seriesData,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    });
+    var gradeChart = echarts.init(document.getElementById('grade'));
+    var data = getCourseGradeData();
+    gradeChart.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: true},
+
+            }
+        },
+
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: data.legendData
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                // name:'',
+                type: 'bar',
+                data: data.seriesData
+            }
+
+        ]
+    });
+    window.onresize = function () {
+        profitChart.resize();
+        volumeChart.resize();
+    }
+    function getInsPercentData(){
+        var inspercent = [[${insPercent}]];
+        var legendData = [];
+        var seriesData = [];
+        for (var i = 0;i<inspercent.name.length;i++){
+            var name = inspercent.name[i];
+            legendData.push(name);
+            seriesData.push({
+                name: name,
+                value: inspercent.value[i]
+            });
+        }
+        return{
+            legendData: legendData,
+            seriesData: seriesData
+        }
+    }
+    function getCourseGradeData(){
+        var coursegrade = [[${courseGrade}]];
+        var legendData = [];
+        var seriesData = [];
+        for (var i = 0;i<coursegrade.name.length;i++){
+            var name = coursegrade.name[i];
+            legendData.push(name);
+            seriesData.push({
+                name: name,
+                value: coursegrade.value[i]
+            });
+        }
+        return{
+            legendData: legendData,
+            seriesData: seriesData
+        }
+    }
+</script>
 </body>
 </html>
 
