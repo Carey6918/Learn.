@@ -19,5 +19,9 @@ public interface StatisticsService {
 
     CourseGradeVO getCourseGrade(String id);
 
+    List<Integer> getOnsitePercent(int institutionID);
+
+    StatisticByTeacherVO getTeacherCancelPercent(int institutionID);
+
     void updateStatisticsByTime();
 }

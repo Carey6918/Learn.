@@ -8,11 +8,10 @@ import com.example.demo.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static com.example.demo.util.GetDate.*;
 
@@ -40,6 +39,8 @@ public class StatisticsServiceImpl implements StatisticsService {
     CourseDao courseDao;
     @Autowired
     RecordDao recordDao;
+    @Autowired
+    StatisticByTeacherDao statisticByTeacherDao;
 
     @Override
     public void updateTraineeStatistics() {
@@ -174,6 +175,71 @@ public class StatisticsServiceImpl implements StatisticsService {
             }
         }
         return courseGradeVO;
+    }
+
+    /**
+     * 获取线下订单和线上订单的数目
+     *
+     * @param institutionID
+     * @return res[0]：线下订单，res[1]：线上订单
+     */
+    @Override
+    public List<Integer> getOnsitePercent(int institutionID) {
+        List<Integer> res = new ArrayList<>();
+        res.add(0);//线下
+        res.add(0);//线上
+        List<Course> courseList = courseDao.findByInstitutionID(institutionID);
+        for (Course course : courseList) {
+            List<ClassRecord> recordList = recordDao.findByCourseID(course.getCourseID());
+            for (ClassRecord record : recordList) {
+                if (record.getTraineeName().equals("非会员线下缴费")) {
+                    res.set(0, res.get(0) + 1);
+                }
+            }
+            List<Order> orderList = orderDao.findByCourseID(course.getCourseID());
+            for (Order order : orderList) {
+                List<Consumption> consumptionList = consumptionDao.findByOrderID(order.getOrderID());
+                for (Consumption consumption : consumptionList) {
+                    if (consumption.getReason().equals("线下缴费")) {
+                        res.set(0, res.get(0) + 1);
+                    } else if (consumption.getReason().equals("支付订单")) {
+                        res.set(1, res.get(1) + 1);
+                    } else if (consumption.getReason().equals("撤销订单")) {
+                        res.set(1, res.get(1) - 1);
+                    }
+                }
+            }
+        }
+        return res;
+
+    }
+
+    @Override
+    public StatisticByTeacherVO getTeacherCancelPercent(int institutionID){
+        List<StatisticByTeacher> statisticByTeachers =  statisticByTeacherDao.findByInstitutionID(institutionID);
+        StatisticByTeacherVO vo = new StatisticByTeacherVO();
+        HashMap<String,List<Double>> map = new HashMap<>();//老师和数据
+        for (StatisticByTeacher statisticByTeacher:statisticByTeachers){
+            String teacher = statisticByTeacher.getTeacher();
+            if (map.get(teacher)==null){
+                map.put(teacher,new ArrayList<>());
+                map.get(teacher).add(statisticByTeacher.getCancelPercent());
+            }else {
+                map.get(teacher).add(statisticByTeacher.getCancelPercent());
+            }
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(statisticByTeacher.getTime());
+            if (!vo.time.contains(date)){
+                vo.time.add(date);
+            }
+        }
+        Iterator it = map.entrySet().iterator() ;
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next() ;
+            vo.teacher.add(String.valueOf(entry.getKey())) ;
+            vo.percent.add((List<Double>) entry.getValue());
+        }
+        return vo;
     }
 
     /**

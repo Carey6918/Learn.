@@ -1,0 +1,10 @@
+package com.example.demo.dao;
+
+import com.example.demo.model.StatisticByTeacher;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface StatisticByTeacherDao extends JpaRepository<StatisticByTeacher,Integer>{
+    List<StatisticByTeacher> findByInstitutionID(int id);
+}
