@@ -41,6 +41,8 @@ public class StatisticsServiceImpl implements StatisticsService {
     RecordDao recordDao;
     @Autowired
     StatisticByTeacherDao statisticByTeacherDao;
+    @Autowired
+    StatisticByCourseDao statisticByCourseDao;
 
     @Override
     public void updateTraineeStatistics() {
@@ -214,30 +216,95 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     }
 
+    /**
+     * 获取课程相关信息
+     * @param institutionID
+     * @return
+     */
     @Override
-    public StatisticByTeacherVO getTeacherCancelPercent(int institutionID){
-        List<StatisticByTeacher> statisticByTeachers =  statisticByTeacherDao.findByInstitutionID(institutionID);
-        StatisticByTeacherVO vo = new StatisticByTeacherVO();
-        HashMap<String,List<Double>> map = new HashMap<>();//老师和数据
-        for (StatisticByTeacher statisticByTeacher:statisticByTeachers){
-            String teacher = statisticByTeacher.getTeacher();
-            if (map.get(teacher)==null){
-                map.put(teacher,new ArrayList<>());
-                map.get(teacher).add(statisticByTeacher.getCancelPercent());
-            }else {
-                map.get(teacher).add(statisticByTeacher.getCancelPercent());
+    public StatisticByCourseVO getCourseStatistic(int institutionID) {
+        List<StatisticByCourse> statisticByCourses = statisticByCourseDao.findByInstitutionID(institutionID);
+        StatisticByCourseVO vo = new StatisticByCourseVO();
+        HashMap<String, List<Integer>> vmap = new HashMap<>();
+        HashMap<String, List<Integer>> pmap = new HashMap<>();
+        for (StatisticByCourse statisticByCourse : statisticByCourses) {
+            String type = statisticByCourse.getCourseType();
+            if (vmap.get(type) == null) {
+                vmap.put(type, new ArrayList<>());
+                pmap.put(type, new ArrayList<>());
             }
+            vmap.get(type).add(statisticByCourse.getVolume());
+            pmap.get(type).add(statisticByCourse.getProfit());
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String date = df.format(statisticByTeacher.getTime());
-            if (!vo.time.contains(date)){
+            String date = df.format(statisticByCourse.getTime());
+            if (!vo.time.contains(date)) {
                 vo.time.add(date);
             }
         }
-        Iterator it = map.entrySet().iterator() ;
+        Iterator it = vmap.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next() ;
-            vo.teacher.add(String.valueOf(entry.getKey())) ;
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.type.add(String.valueOf(entry.getKey()));
+            vo.volume.add((List<Integer>) entry.getValue());
+        }
+        it = pmap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.profit.add((List<Integer>) entry.getValue());
+        }
+        return vo;
+    }
+
+    /**
+     * 获取教师随时间的数据
+     *
+     * @param institutionID
+     * @return
+     */
+    @Override
+    public StatisticByTeacherVO getTeacherCancelPercent(int institutionID) {
+        List<StatisticByTeacher> statisticByTeachers = statisticByTeacherDao.findByInstitutionID(institutionID);
+        StatisticByTeacherVO vo = new StatisticByTeacherVO();
+        HashMap<String, List<Double>> map = new HashMap<>();//老师和退订数据
+        HashMap<String, List<Double>> map1 = new HashMap<>();//老师和优秀率数据
+        HashMap<String, List<Double>> map2 = new HashMap<>();//老师和不及格率数据
+        for (StatisticByTeacher statisticByTeacher : statisticByTeachers) {
+            String teacher = statisticByTeacher.getTeacher();
+            if (map.get(teacher) == null) {
+                map.put(teacher, new ArrayList<>());
+                map.get(teacher).add(statisticByTeacher.getCancelPercent());
+                map1.put(teacher, new ArrayList<>());
+                map1.get(teacher).add(statisticByTeacher.getFailPercent());
+                map2.put(teacher, new ArrayList<>());
+                map2.get(teacher).add(statisticByTeacher.getGoodPercent());
+
+            } else {
+                map.get(teacher).add(statisticByTeacher.getCancelPercent());
+                map1.get(teacher).add(statisticByTeacher.getFailPercent());
+                map2.get(teacher).add(statisticByTeacher.getGoodPercent());
+
+            }
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(statisticByTeacher.getTime());
+            if (!vo.time.contains(date)) {
+                vo.time.add(date);
+            }
+        }
+        Iterator it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.teacher.add(String.valueOf(entry.getKey()));
             vo.percent.add((List<Double>) entry.getValue());
+        }
+        it = map1.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.failPercent.add((List<Double>) entry.getValue());
+        }
+        it = map2.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.goodPercent.add((List<Double>) entry.getValue());
         }
         return vo;
     }

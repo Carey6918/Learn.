@@ -1,14 +1,21 @@
 package com.example.demo.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
-public class StatisticByCourse implements Serializable{
+@Entity
+@Table(name = "statisticByCourse")
+public class StatisticByCourse {
     private int id;
+    private String courseType;
     private int institutionID;
     private int volume;
     private int profit;
+    private Date time;
 
     @Column(name = "volume")
     public int getVolume() {
@@ -45,5 +52,23 @@ public class StatisticByCourse implements Serializable{
 
     public void setInstitutionID(int institutionID) {
         this.institutionID = institutionID;
+    }
+
+    @Column(name = "time")
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    @Column(name = "courseType")
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 }

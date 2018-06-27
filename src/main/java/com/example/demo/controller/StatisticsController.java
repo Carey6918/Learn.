@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Consumption;
-import com.example.demo.model.Order;
-import com.example.demo.model.StatisticByTeacherVO;
-import com.example.demo.model.StatisticByTime;
+import com.example.demo.model.*;
 import com.example.demo.service.ConsumptionService;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.StatisticsService;
@@ -56,6 +53,8 @@ public class StatisticsController {
         model.addAttribute("onsitePercent",onsitePercent);
         StatisticByTeacherVO teacherCancel = statisticsService.getTeacherCancelPercent(institutionID);
         model.addAttribute("teacherCancel",teacherCancel);
+        StatisticByCourseVO courseSale = statisticsService.getCourseStatistic(institutionID);
+        model.addAttribute("courseSale",courseSale);
         return "ins/statistics";
     }
 }

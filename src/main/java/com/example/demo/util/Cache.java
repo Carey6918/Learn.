@@ -10,7 +10,7 @@ public class Cache {
     private boolean expired; //是否终止
 
     public Cache() {
-        super();
+       // super();
         setTimeOut(System.currentTimeMillis() + 1000 * 60 * 1);
         setExpired(false);
     }

@@ -21,6 +21,8 @@ public interface StatisticsService {
 
     List<Integer> getOnsitePercent(int institutionID);
 
+    StatisticByCourseVO getCourseStatistic(int institutionID);
+
     StatisticByTeacherVO getTeacherCancelPercent(int institutionID);
 
     void updateStatisticsByTime();

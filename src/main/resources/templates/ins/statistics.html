@@ -281,6 +281,64 @@
                     </div>
                 </div>
             </div>
+            <div class="row-fluid" style="    margin-bottom: 50px;">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>各教师课程成绩的优秀率</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:300px;" id="goodPercent" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid" style="    margin-bottom: 50px;">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>各教师课程成绩的不及格率</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:300px;" id="failPercent" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid" style="    margin-bottom: 50px;">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>各类型课程的成交量</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:400px;" id="courseSale" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-credit-card"></i>
+                        <h5>各类型课程的销售额</h5>
+                        <div class="widget-buttons">
+                            <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i
+                                    data-title="Collapse" class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-body clearfix">
+                        <div style="height:400px;" id="courseSale2" class="widget-analytics-large"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -519,6 +577,250 @@
           seriesData:seriesData
         };
     }
+    var goodPercentChart = echarts.init(document.getElementById('goodPercent'));
+    var data = getGoodPercentData();
+    goodPercentChart.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data:data.teacherData,
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: data.timeData,
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} %'
+                }
+            },
+        ],
+        series: data.seriesData,
+    });
+    function getGoodPercentData() {
+        var cancelPercent = [[${teacherCancel}]];
+        var teacherData = [];
+        var timeData = [];
+        var seriesData = [];
+        for (var i = 0; i < cancelPercent.teacher.length;i++){
+            teacherData.push(cancelPercent.teacher[i]);
+            seriesData.push({
+                name:cancelPercent.teacher[i],
+                type:'bar',
+                data:cancelPercent.goodPercent[i]
+            })
+        }
+        for (var i = 0; i < cancelPercent.time.length;i++){
+            timeData.push(cancelPercent.time[i]);
+        }
+        return {
+            teacherData:teacherData,
+            timeData:timeData,
+            seriesData:seriesData
+        };
+    }
+    var failPercentChart = echarts.init(document.getElementById('failPercent'));
+    var data = getFailPercentData();
+    failPercentChart.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data:data.teacherData,
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: data.timeData,
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} %'
+                }
+            },
+        ],
+        series: data.seriesData,
+    });
+    function getFailPercentData() {
+        var cancelPercent = [[${teacherCancel}]];
+        var teacherData = [];
+        var timeData = [];
+        var seriesData = [];
+        for (var i = 0; i < cancelPercent.teacher.length;i++){
+            teacherData.push(cancelPercent.teacher[i]);
+            seriesData.push({
+                name:cancelPercent.teacher[i],
+                type:'bar',
+                data:cancelPercent.failPercent[i]
+            })
+        }
+        for (var i = 0; i < cancelPercent.time.length;i++){
+            timeData.push(cancelPercent.time[i]);
+        }
+        return {
+            teacherData:teacherData,
+            timeData:timeData,
+            seriesData:seriesData
+        };
+    }
+    var courseSaleChart = echarts.init(document.getElementById('courseSale'));
+    var data = getCourseSaleData();
+    courseSaleChart.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data:data.typeData,
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: data.timeData,
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                name: '交易额',
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} 元'
+                }
+            },{
+                type: 'value'
+            }
+        ],
+        series: data.seriesData,
+    });
+    function getCourseSaleData() {
+        var courseSale = [[${courseSale}]];
+        var typeData = [];
+        var timeData = [];
+        var seriesData = [];
+        var seriesData2 = [];
+        for (var i = 0; i < courseSale.type.length;i++){
+            typeData.push(courseSale.type[i]);
+            seriesData.push({
+                name:courseSale.type[i],
+                type:'bar',
+                yAxisIndex: 1,
+                data:courseSale.volume[i]
+            });
+            seriesData2.push({
+                name:courseSale.type[i],
+                type:'line',
+                data:courseSale.profit[i]
+            })
+        }
+        for (var i = 0; i < courseSale.time.length;i++){
+            timeData.push(courseSale.time[i]);
+        }
+        return {
+            typeData:typeData,
+            timeData:timeData,
+            seriesData:seriesData,
+            seriesData2:seriesData2
+        };
+    }
+    var courseSaleChart2 = echarts.init(document.getElementById('courseSale2'));
+    courseSaleChart2.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data:data.typeData,
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: data.timeData,
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} 元'
+                }
+            }
+        ],
+        series: data.seriesData2,
+    })
 </script>
 </body>
 </html>

@@ -14,6 +14,8 @@ public class StatisticByTeacher {
     private Date time;
     private double cancelPercent;
     private int id;
+    private double goodPercent;
+    private double failPercent;
     public StatisticByTeacher(){}
     public StatisticByTeacher(int institutionID, String teacher, Date time, double cancelPercent) {
         this.institutionID = institutionID;
@@ -62,5 +64,23 @@ public class StatisticByTeacher {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name = "failPercent")
+    public double getFailPercent() {
+        return failPercent;
+    }
+
+    public void setFailPercent(double failPercent) {
+        this.failPercent = failPercent;
+    }
+
+    @Column(name = "goodPercent")
+    public double getGoodPercent() {
+        return goodPercent;
+    }
+
+    public void setGoodPercent(double goodPercent) {
+        this.goodPercent = goodPercent;
     }
 }
