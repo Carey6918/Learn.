@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dao.*;
 import com.example.demo.model.*;
+import com.example.demo.model.StatisticsByVIP;
 import com.example.demo.service.ConsumptionService;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.StatisticsService;
@@ -43,6 +44,10 @@ public class StatisticsServiceImpl implements StatisticsService {
     StatisticByTeacherDao statisticByTeacherDao;
     @Autowired
     StatisticByCourseDao statisticByCourseDao;
+    @Autowired
+    StatisticsByCourseNInsDao statisticsByCourseNInsDao;
+    @Autowired
+    StatisticsByVIPDao statisticsByVIPDao;
 
     @Override
     public void updateTraineeStatistics() {
@@ -218,6 +223,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     /**
      * 获取课程相关信息
+     *
      * @param institutionID
      * @return
      */
@@ -307,6 +313,69 @@ public class StatisticsServiceImpl implements StatisticsService {
             vo.goodPercent.add((List<Double>) entry.getValue());
         }
         return vo;
+    }
+
+    /**
+     * 获取时间相关信息
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public StatisticByTimeVO getStatisticByTime(int type) {
+        List<StatisticByTime> statisticByTimes = statisticByTimeDao.findByType(type);
+        StatisticByTimeVO vo = new StatisticByTimeVO();
+        HashMap<String, List<Integer>> vmap = new HashMap<>();
+        HashMap<String, List<Integer>> pmap = new HashMap<>();
+        for (StatisticByTime statisticByTime : statisticByTimes) {
+            String name = statisticByTime.getKey().getId();
+            if (vmap.get(name) == null) {
+                vmap.put(name, new ArrayList<>());
+                pmap.put(name, new ArrayList<>());
+            }
+            vmap.get(name).add(statisticByTime.getVolume());
+            pmap.get(name).add((int) statisticByTime.getProfit());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(statisticByTime.getKey().getDate());
+            if (!vo.time.contains(date)) {
+                vo.time.add(date);
+            }
+        }
+        Iterator it = vmap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.name.add(String.valueOf(entry.getKey()));
+            vo.volume.add((List<Integer>) entry.getValue());
+        }
+        it = pmap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            vo.profit.add((List<Integer>) entry.getValue());
+        }
+        return vo;
+    }
+
+    /**
+     * 获取课程排名机构
+     *
+     * @return
+     */
+    @Override
+    public List<StatisticsByCourseNIns> getCourseTop() {
+        return statisticsByCourseNInsDao.getList();
+    }
+
+    @Override
+    public List<StatisticsByVIP> getVIP() {
+        return statisticsByVIPDao.getList();
+    }
+
+    @Autowired
+    StatisticsByAgeDao statisticsByAgeDao;
+
+    @Override
+    public List<StatisticsByAge> getAge(){
+        return statisticsByAgeDao.getList();
     }
 
     /**

@@ -25,5 +25,13 @@ public interface StatisticsService {
 
     StatisticByTeacherVO getTeacherCancelPercent(int institutionID);
 
+    StatisticByTimeVO getStatisticByTime(int type);
+
+    List<StatisticsByCourseNIns> getCourseTop();
+
+    List<StatisticsByVIP> getVIP();
+
+    List<StatisticsByAge> getAge();
+
     void updateStatisticsByTime();
 }

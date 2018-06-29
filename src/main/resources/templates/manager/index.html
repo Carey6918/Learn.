@@ -71,7 +71,7 @@
             <div class="accordion" id="accordion2">
                 <div class="accordion-group">
                     <div class="accordion-heading">
-                        <a class="accordion-toggle active b_F79999" href="index-2.html"><i class="icon-bar-chart"></i>
+                        <a class="accordion-toggle active b_F79999" href="/managerIndex"><i class="icon-bar-chart"></i>
                             <span>首页</span></a>
                     </div>
                 </div>
@@ -82,9 +82,9 @@
                     </div>
                     <div id="collapse1" class="accordion-body collapse">
                         <div class="accordion-inner">
-                            <a class="accordion-toggle" href="ui_features.html"><i class="icon-reorder"></i> 机构统计</a>
-                            <a class="accordion-toggle" href="forms.html"><i class="icon-user"></i> 学员统计</a>
-                            <a class="accordion-toggle" href="tables.html"><i class="icon-tasks"></i> 财务情况</a>
+                            <a class="accordion-toggle" href="/statisticsForInstitution"><i class="icon-reorder"></i> 机构统计</a>
+                            <a class="accordion-toggle" href="/statisticsForTrainee"><i class="icon-user"></i> 学员统计</a>
+                            <a class="accordion-toggle" href="/statisticsForAll"><i class="icon-tasks"></i> 财务情况</a>
                         </div>
                     </div>
                 </div>
@@ -106,206 +106,155 @@
 
         <!-- Main window -->
         <div class="main_container" id="dashboard_page">
-            <!--<div class="row-fluid">-->
-                <!--<div class="overview_boxes">-->
-                    <!--<div class="box_row clearfix">-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
-                                        <!--<p style="color:#E28271">+85%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="85">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>+530</strong>该月访问量</p>-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#98E5EA" class="icon-user"></i>-->
-                                        <!--<p style="color:#98E5EA">+13%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="13">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>57</strong>新用户</p>-->
+            <div class="row-fluid">
+                <div class="overview_boxes">
+                    <div class="box_row clearfix">
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#E28271" class="icon-eye-open"></i>
+                                        <p style="color:#E28271">+85%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="85">
+                                    </div>
+                                    <p><strong>+530</strong>该月访问量</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#98E5EA" class="icon-user"></i>
+                                        <p style="color:#98E5EA">+13%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="13">
+                                    </div>
+                                    <p><strong>57</strong>新用户</p>
 
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#AEEA98" class="icon-bullhorn"></i>-->
-                                        <!--<p style="color:#AEEA98">+15%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="15">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>35/235</strong>完成的订单</p>-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>7.3k</h2>-->
-                                        <!--<p>Visits</p>-->
-                                      <!--</div>-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#98E5EA" class="icon-user"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>4.2k</h2>-->
-                                        <!--<p>Users</p>-->
-                                      <!--</div>-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#AEEA98" class="icon-bullhorn"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>235</h2>-->
-                                        <!--<p>Tickets</p>-->
-                                      <!--</div>-->
-                                       <!--&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--<div class="box_row clearfix">-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#98AEEA" class="icon-credit-card"></i>-->
-                                        <!--<p style="color:#98AEEA">+55%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="55">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>$14,230</strong>收入</p>-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#EA98AB" class="icon-thumbs-up"></i>-->
-                                        <!--<p style="color:#EA98AB">+35%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="35">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>152</strong>成交率</p>-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="widget-tasks-statistics">-->
-                            <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
-                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
-                                    <!--<div class="white">-->
-                                        <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
-                                        <!--<p style="color:#F6BF99">+97%</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="widget">-->
-                                        <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false-->
-                                               <!--data-readOnly=true data-thickness=".15" value="97">-->
-                                    <!--</div>-->
-                                    <!--<p><strong>592</strong>待审核量</p>-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#98AEEA" class="icon-thumbs-up"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>152</h2>-->
-                                        <!--<p>New Likes</p>-->
-                                      <!--</div>-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#EA98AB" class="icon-credit-card"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>$14,230</h2>-->
-                                        <!--<p>Income</p>-->
-                                      <!--</div>-->
-                                      <!--<div>-->
-                                        <!--<div class="circle">-->
-                                          <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
-                                        <!--</div>-->
-                                        <!--<h2>92</h2>-->
-                                        <!--<p>Leads Generated</p>-->
-                                      <!--</div>-->
-                                       <!--&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#AEEA98" class="icon-bullhorn"></i>
+                                        <p style="color:#AEEA98">+15%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="15">
+                                    </div>
+                                    <p><strong>35/235</strong>完成的订单</p>
+                                </a>
+                            </div>
+                        </div>
+                        <!--
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#E28271" class="icon-eye-open"></i>
+                                        </div>
+                                        <h2>7.3k</h2>
+                                        <p>Visits</p>
+                                      </div>
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#98E5EA" class="icon-user"></i>
+                                        </div>
+                                        <h2>4.2k</h2>
+                                        <p>Users</p>
+                                      </div>
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#AEEA98" class="icon-bullhorn"></i>
+                                        </div>
+                                        <h2>235</h2>
+                                        <p>Tickets</p>
+                                      </div>
+                                       -->
+                    </div>
+                    <div class="box_row clearfix">
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#98AEEA" class="icon-credit-card"></i>
+                                        <p style="color:#98AEEA">+55%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="55">
+                                    </div>
+                                    <p><strong>$14,230</strong>收入</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#EA98AB" class="icon-thumbs-up"></i>
+                                        <p style="color:#EA98AB">+35%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="35">
+                                    </div>
+                                    <p><strong>152</strong>成交率</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-tasks-statistics">
+                            <div class="userstats clearfix" style="margin-top: 25px;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+                                    <div class="white">
+                                        <i style="color:#F6BF99" class="icon-phone"></i>
+                                        <p style="color:#F6BF99">+97%</p>
+                                    </div>
+                                    <div class="widget">
+                                        <input class="knob" data-width="120" data-height="120" data-displayInput=false
+                                               data-readOnly=true data-thickness=".15" value="97">
+                                    </div>
+                                    <p><strong>592</strong>待审核量</p>
+                                </a>
+                            </div>
+                        </div>
+                        <!--
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+                                        </div>
+                                        <h2>152</h2>
+                                        <p>New Likes</p>
+                                      </div>
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#EA98AB" class="icon-credit-card"></i>
+                                        </div>
+                                        <h2>$14,230</h2>
+                                        <p>Income</p>
+                                      </div>
+                                      <div>
+                                        <div class="circle">
+                                          <i style="color:#F6BF99" class="icon-phone"></i>
+                                        </div>
+                                        <h2>92</h2>
+                                        <p>Leads Generated</p>
+                                      </div>
+                                       -->
+                    </div>
+                </div>
+            </div>
 
 
             <!-- CHARTS  -->
             <div class="row-fluid">
-                <!--<div class="widget span6">-->
-                <!--<div class="widget-header">-->
-                <!--<i class="icon-bar-chart"></i>-->
-                <!--<h5>周统计</h5>-->
-                <!--<div class="widget-buttons">-->
-                <!--<a href="javascript:void(0)" class="collapse" data-collapsed="false"><i-->
-                <!--data-title="Collapse" class="icon-chevron-up"></i></a>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="widget-body clearfix">-->
-                <!--<div class="widget-analytics-small">-->
-                <!--<ul>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">1,5,10,5,25,30,12,22</span>-->
-                <!--<h5>学员：</h5>-->
-                <!--<h4>502</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">5,4,5,7,8,1,1,20,2</span>-->
-                <!--<h5>机构：</h5>-->
-                <!--<h4>420</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">5,3,3,98,102,155,150,187,196</span>-->
-                <!--<h5>订单：</h5>-->
-                <!--<h4>2054</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">5,44,53,66,378,771,341,520,452</span>-->
-                <!--<h5>课程：</h5>-->
-                <!--<h4>5.8</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">5,4,35,57,28,16,11,20,72</span>-->
-                <!--<h5>交易额：</h5>-->
-                <!--<h4>00:10:34</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">52,44,65,27,86,14,16,40,22</span>-->
-                <!--<h5>成交率：</h5>-->
-                <!--<h4>30.30%</h4>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<span class="inlinesparkline">5,6,7,9,10,20,25,22,21</span>-->
-                <!--<h5>新用户：</h5>-->
-                <!--<h4>29.35%</h4>-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--</div> &lt;!&ndash; /widget body &ndash;&gt;-->
-                <!--</div> &lt;!&ndash; /widget span12 &ndash;&gt;-->
                 <div class="widget span4">
                     <div class="widget-header">
                         <i class="icon-credit-card"></i>

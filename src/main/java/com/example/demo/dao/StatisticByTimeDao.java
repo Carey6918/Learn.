@@ -8,4 +8,5 @@ import java.util.List;
 public interface StatisticByTimeDao extends JpaRepository<StatisticByTime,String>{
     StatisticByTime save(StatisticByTime statisticByTime);
     List<StatisticByTime> findByKeyId(String id);
+    List<StatisticByTime> findByType(int type);
 }

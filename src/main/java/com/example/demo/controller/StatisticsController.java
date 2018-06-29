@@ -57,4 +57,40 @@ public class StatisticsController {
         model.addAttribute("courseSale",courseSale);
         return "ins/statistics";
     }
+    @RequestMapping(value = "/statisticsForInstitution")
+    public String statisticsForInstitution(HttpServletRequest request, Model model){
+
+        StatisticByTimeVO statisticByTimeVO = statisticsService.getStatisticByTime(2);
+        model.addAttribute("statisticByTimeVO",statisticByTimeVO);
+        List<StatisticsByCourseNIns> statisticsByCourseNIns = statisticsService.getCourseTop();
+        model.addAttribute("statisticsByCourseNIns",statisticsByCourseNIns);
+        return "manager/statisticsForInstitution";
+    }
+
+    @RequestMapping(value = "/statisticsForTrainee")
+    public String statisticsForTrainee(Model model){
+        List<StatisticsByVIP> statisticsByVIPS = statisticsService.getVIP();
+        model.addAttribute("statisticsByVIPS",statisticsByVIPS);
+        List<StatisticsByAge> statisticsByAges = statisticsService.getAge();
+        model.addAttribute("statisticsByAges",statisticsByAges);
+        return "manager/statisticsForTrainee";
+    }
+    @RequestMapping(value = "/statisticsForAll")
+    public String statisticsForAll(Model model){
+        List<StatisticByTime> statisticByTimeList = statisticsService.getTimeStatistics("0");
+        List<String> dateList = new LinkedList<>();
+        List<Double> profitList = new LinkedList<>();
+        List<Integer> volumeList = new LinkedList<>();
+        for(int i = 0 ; i< statisticByTimeList.size();i++){
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(statisticByTimeList.get(i).getKey().getDate());
+            dateList.add(date);
+            profitList.add(statisticByTimeList.get(i).getProfit());
+            volumeList.add(statisticByTimeList.get(i).getVolume());
+        }
+        model.addAttribute("profitList",profitList);
+        model.addAttribute("dateList",dateList);
+        model.addAttribute("volumeList",volumeList);
+        return "manager/statisticsForAll";
+    }
 }
